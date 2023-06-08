@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Function.prototype.before = function (beforeFn) {
+        var _this = this
+        return function () {
+            // 先进行前置函数的调用
+            beforeFn.apply(this, arguments)
+
+            // 执行原来的函数
+            return _this.apply(this, arguments)
+
+        }
+    }
+
+
+    Function.prototype.after = function (afterFn) {
+        var _this = this
+        return function () {
+            var result = _this.apply(this, arguments)
+            // 先进行前置函数的调用
+            afterFn.apply(this, arguments)
+
+            // 执行原来的函数
+            return result
+
+        }
+    }
+
+    function test() {
+        console.log('11111111')
+    }
+
+    var test1 = test.before(function () {
+        console.log('00000')
+    }).after(function () {
+        console.log('22222')
+    })
+
+    test1()
+</script>
+</body>
+</html>

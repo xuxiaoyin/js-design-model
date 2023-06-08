@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  class Singleton {
+      constructor(name, age) {
+          if (!Singleton.instance) {
+              this.name = name
+              this.age = age
+              Singleton.instance = this
+          }
+
+          return Singleton.instance
+      }
+
+  }
+
+
+  // 得到的永远是第一次实例对象
+
+  console.log(new Singleton('test', 100) === new Singleton('小名', 10))
+</script>
+</html>

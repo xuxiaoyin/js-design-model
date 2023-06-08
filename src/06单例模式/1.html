@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  var Singleton = (function () {
+      var instance
+
+      function User(name, age) {
+          this.name = name;
+          this.age = age;
+      }
+
+      return function (name, age) {
+          if (!instance) {
+              // 创建实例
+              instance = new User(name, age)
+          }
+          return instance
+      }
+  })()
+
+  let a = Singleton('test', 123)
+  a = Singleton('test1', 123) // 不会被覆盖
+  console.log(a)
+</script>
+</html>

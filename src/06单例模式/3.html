@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+  .model {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    background: aquamarine;
+    transform: translate(-50%, -50%);
+  }
+</style>
+<body>
+<!--<div class="model">登录对话框</div>-->
+<button id="open">打开</button>
+<button id="close">关闭</button>
+</body>
+
+<script>
+
+  const Modal = (function () {
+    let instance = null
+    return function () {
+      if (!instance) {
+        instance = document.createElement('div')
+        instance.innerHTML = "登录对话框"
+        instance.className = "model"
+        instance.style.display = "none"
+
+        document.body.appendChild(instance)
+      }
+      return instance
+    }
+  })()
+
+  document.getElementById('open').onclick = function () {
+    // 创建model
+    const modal = new Modal()
+    // 显示modal
+    modal.style.display = 'block'
+  }
+
+  document.getElementById('close').onclick = function () {
+    const modal = new Modal()
+    modal.style.display = 'none'
+  }
+</script>
+</html>

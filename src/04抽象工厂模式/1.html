@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class User {
+        constructor(name, role, pages) {
+            this.name = name;
+            this.role = role;
+            this.pages = pages
+        }
+
+        welcome() {
+            console.log("欢迎回来", this.name)
+        }
+
+        dataShow() {
+            throw new Error("抽象方法需要被实现")
+        }
+    }
+
+    class SuperAdmin extends User {
+        constructor(name) {
+            super(name, 'superadmin', ['home', 'use-manege', 'right-manage', 'news-manage']);
+        }
+
+        dataShow() {
+            console.log('superadmin-datashow')
+        }
+
+        addRight() {}
+
+        addUser
+    }
+
+    class Admin extends User {
+        constructor(name) {
+            super(name, 'admin', ['home', 'use-manege', 'news-manage']);
+        }
+
+        dataShow() {
+            console.log('admin-datashow')
+        }
+        addUser
+    }
+
+    class Editor extends User {
+        constructor(name) {
+            super(name, 'editor', ['home', 'news-manage']);
+        }
+
+        dataShow() {
+            console.log('Editor-datashow')
+        }
+        addUser
+    }
+
+    function gerAbstractUserFactory(role) {
+        switch (role) {
+            case 'superadmin':
+                return SuperAdmin
+            case 'admin':
+                return Admin
+            case 'editor':
+                return Editor
+            default:
+                throw new Error("参数错误")
+        }
+    }
+
+    let UserClass = gerAbstractUserFactory('superadmin')
+    console.log(UserClass)
+    let user = new UserClass('test')
+    user.dataShow()
+</script>
+</html>
